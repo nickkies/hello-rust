@@ -1,9 +1,6 @@
 struct Container(i32, i32);
 
-// A trait which checks if 2 items are stored inside of container.
-// Also retrieves first or last value.
 trait Contains {
-    // Define generic types here which methods will be able to utilize.
     type A;
     type B;
 
@@ -13,20 +10,14 @@ trait Contains {
 }
 
 impl Contains for Container {
-    // Specify what types `A` and `B` are. If the `input` type
-    // is `Container(i32, i32)`, the `output` types are determined
-    // as `i32` and `i32`.
     type A = i32;
     type B = i32;
 
-    // `&Self::A` and `&Self::B` are also valid here.
     fn contains(&self, number_1: &i32, number_2: &i32) -> bool {
         (&self.0 == number_1) && (&self.1 == number_2)
     }
-    // Grab the first number.
     fn first(&self) -> i32 { self.0 }
 
-    // Grab the last number.
     fn last(&self) -> i32 { self.1 }
 }
 
