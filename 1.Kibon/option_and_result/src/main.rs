@@ -12,11 +12,15 @@ fn main() {
 }
 
 fn get_username(user_id: u32) -> Option<String> {
-    let result = String::from("Ferris");
-    let username = match user_id {
-        1 => Some(result),
-        _ => None,
-    };
+    let query = format!("GET username FROM users WHERE id={user_id}");
+    let db_result = query_db(query);
+    db_result.ok()
+}
 
-    username
+fn query_db(query: String) -> Result<String, String> {
+    if query.is_empty() {
+        Err(String::from("Query cannot be empty"))
+    } else {
+        Ok(String::from("Ferris"))
+    }
 }
