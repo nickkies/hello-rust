@@ -64,16 +64,16 @@ fn main() {
         },
     };
     let house = House {};
-    let object = create_paintable_object();
+    let object = create_paintable_object(true);
 
     paint_red(&car);
     paint_blue(&house);
-    paint_red(&object);
+    paint_red(object.as_ref());
 
     paint_vehicle_red(&car);
 }
 
-fn paint_red<T: Paint>(object: &T) {
+fn paint_red(object: &dyn Paint) {
     object.paint("red".to_owned());
 }
 
@@ -88,6 +88,16 @@ where
     object.paint("red".to_owned());
 }
 
-fn create_paintable_object() -> impl Paint {
-    House {}
+fn create_paintable_object(vehicle: bool) -> Box<dyn Paint> {
+    if vehicle {
+        Box::new(Car {
+            info: VehicleInfo {
+                make: "BMW".to_owned(),
+                model: "X3".to_owned(),
+                year: 2022,
+            },
+        })
+    } else {
+        Box::new(House {})
+    }
 }
