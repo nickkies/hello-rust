@@ -20,6 +20,11 @@ fn main() {
     let _validator = |username: &str, password: &str| !username.is_empty() && !password.is_empty();
     let weak_password = "password123!".to_string();
 
+    // Fn - Immutably borrow variables in environment.
+    // FnMut - Mutably borrow variables in environment. Can change environment.
+    // FnOnce - Take ownership of variables in environment. Can only be callled once.
+
+    // let validator2 = move |username: &str, password: &str| {
     let validator2 = |username: &str, password: &str| {
         !username.is_empty()
             && !password.is_empty()
