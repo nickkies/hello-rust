@@ -22,5 +22,5 @@ impl Iterator for MyStruct {
 
 fn main() {
     let mut m = MyStruct {};
-    let item = m.next();
+    let _item = m.next();
 }
