@@ -4,7 +4,7 @@ struct Person {
     occupation: String,
 }
 
-struct PersonIterator {
+/* struct PersonIterator {
     values: Vec<String>,
 }
 
@@ -28,6 +28,15 @@ impl IntoIterator for Person {
             values: vec![self.first_name, self.last_name, self.occupation],
         }
     }
+} */
+
+impl IntoIterator for Person {
+    type Item = String;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        vec![self.first_name, self.last_name, self.occupation].into_iter()
+    }
 }
 
 fn main() {
@@ -37,10 +46,14 @@ fn main() {
         occupation: "Software Engineer".to_string(),
     };
 
-    let mut i = p.into_iter();
+    /* let mut i = p.into_iter();
 
     println!("{:?}", i.next());
     println!("{:?}", i.next());
     println!("{:?}", i.next());
-    println!("{:?}", i.next());
+    println!("{:?}", i.next()); */
+
+    for item in p {
+        println!("{item}");
+    }
 }
