@@ -1,0 +1,10 @@
+[package]
+name = "sharing_state_between_threads"
+version = "0.1.0"
+edition = "2021"
+default-run = "sharing_state_between_threads"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
