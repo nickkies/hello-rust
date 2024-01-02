@@ -30,6 +30,13 @@ impl Database {
     }
 }
 
+#[allow(dead_code)]
+#[derive(Debug)]
+struct Product {
+    name: String,
+    price: u32,
+}
+
 fn main() {
     log_info!([TIME] starting program...);
 
@@ -38,4 +45,15 @@ fn main() {
     for _ in 0..=100 {
         db.connect();
     }
+
+    let laptop = Product {
+        name: "Dell".to_string(),
+        price: 2000,
+    };
+    by_product(laptop, 20);
+}
+
+#[log_call(verbose)]
+fn by_product(product: Product, discount: u32) {
+    println!("[Info] calling by_product | product = {product:?} discount = {discount}");
 }
