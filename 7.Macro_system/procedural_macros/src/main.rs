@@ -1,5 +1,5 @@
 use procedural_macros::*;
 
 fn main() {
-    log_info!(println!("Hi!"););
+    log_info!([TIME] starting program...);
 }
